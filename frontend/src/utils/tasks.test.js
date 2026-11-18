@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { countByStatus, completionRate } from './tasks';
+import { countByStatus, completionRate, filterByStatus } from './tasks';
 
 /**
  * Tests des fonctions utilitaires (tasks.ts)
@@ -60,22 +60,67 @@ describe('countByStatus', () => {
 describe('completionRate', () => {
   it('calcule le pourcentage de tâches terminées', () => {
     // ARRANGE : 4 tâches, dont 2 avec le statut 'done'
-    // ACT     : appeler completionRate(tasks)
-    // ASSERT  : le résultat doit valoir 50
-    throw new Error('Test à écrire (TP 1 - Exercice 4)');
+    const tasks = [
+      { status: 'todo' },
+      { status: 'in_progress' },
+      { status: 'done' },
+      { status: 'done' },
+    ];
+
+    // ACT
+    const rate = completionRate(tasks);
+
+    // ASSERT
+    expect(rate).toBe(50);
   });
 
   it('renvoie 100 quand toutes les tâches sont terminées', () => {
-    // ARRANGE : 2 tâches, toutes les deux 'done'
-    // ACT     : appeler completionRate(tasks)
-    // ASSERT  : le résultat doit valoir 100
-    throw new Error('Test à écrire (TP 1 - Exercice 4)');
+    // ARRANGE
+    const tasks = [
+      { status: 'done' },
+      { status: 'done' },
+    ];
+
+    // ACT : appeler completionRate(tasks)
+    const rate = completionRate(tasks);
+
+    // ASSERT : le résultat doit valoir 100
+    expect(rate).toBe(100);
   });
 
   it('renvoie 0 pour une liste vide', () => {
-    // ARRANGE : une liste vide []
-    // ACT     : appeler completionRate([])
-    // ASSERT  : le résultat doit valoir 0
-    throw new Error('Test à écrire (TP 1 - Exercice 4)');
+    // ARRANGE
+    const tasks = [];
+
+    // ACT
+    const rate = completionRate(tasks);
+
+    // ASSERT
+    expect(rate).toBe(0);
+  });
+});
+
+// =============================================================================
+// BONUS (TDD) : filterByStatus()
+// =============================================================================
+
+describe('filterByStatus', () => {
+  it('renvoie seulement les tâches terminées', () => {
+    // ARRANGE
+    const tasks = [
+      { id: 1, status: 'todo' },
+      { id: 2, status: 'done' },
+      { id: 3, status: 'in_progress' },
+      { id: 4, status: 'done' },
+    ];
+
+    // ACT
+    const doneTasks = filterByStatus(tasks, 'done');
+
+    // ASSERT : un tableau → toEqual
+    expect(doneTasks).toEqual([
+      { id: 2, status: 'done' },
+      { id: 4, status: 'done' },
+    ]);
   });
 });

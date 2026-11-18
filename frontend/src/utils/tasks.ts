@@ -33,3 +33,10 @@ export function completionRate(tasks: HasStatus[]): number {
   const done = countByStatus(tasks).done;
   return Math.round((done / tasks.length) * 100);
 }
+
+// Renvoie les tâches dont le statut correspond à celui passé en paramètre.
+// Exemple : filterByStatus([{ status: 'todo' }, { status: 'done' }], 'done')
+//           → [{ status: 'done' }]
+export function filterByStatus(tasks: HasStatus[], status: TaskStatus): HasStatus[] {
+  return tasks.filter((task) => task.status === status);
+}
