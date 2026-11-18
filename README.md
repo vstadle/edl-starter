@@ -1,3 +1,10 @@
+> [!NOTE]
+> **Projet réalisé dans un cadre académique : ce n'est pas un projet personnel.**
+>
+> Ce dépôt est un fork du code de démarrage [umons-ig/edl-starter](https://github.com/umons-ig/edl-starter), fourni par l'équipe enseignante du cours **EDL – Expertises digitale et logicielle** de l'**Université de Mons (UMONS)**, Faculté des Sciences.
+>
+> L'application TaskFlow, la structure du projet et les énoncés des travaux pratiques (dossier `docs/`) ont été conçus par l'équipe enseignante. Mes contributions se limitent aux exercices demandés dans les TP (tests unitaires, fonctions à compléter, etc.), réalisés pendant l'année académique 2026-2027.
+
 # 🚀 EDL Starter - Code de Démarrage
 
 Bienvenue dans le code de démarrage pour les ateliers d'Environnement de Développement Logiciel (EDL) !
