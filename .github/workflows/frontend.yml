@@ -1,10 +1,7 @@
 name: Frontend Tests
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+  workflow_call:  # ✨ Ce workflow sera lancé par le pipeline
 
 jobs:
   frontend:

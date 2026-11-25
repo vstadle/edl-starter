@@ -1,0 +1,29 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend:
+    name: Backend Tests
+    uses: ./.github/workflows/backend.yml
+
+  frontend:
+    name: Frontend Tests
+    uses: ./.github/workflows/frontend.yml
+
+  summary:
+    name: All Tests Passed
+    needs: [backend, frontend]
+    if: always()  # ✨ Tourne aussi quand backend ou frontend échoue
+    runs-on: ubuntu-latest
+    steps:
+      - name: ❌ Un job a échoué
+        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
+        run: exit 1
+
+      - name: 🎉 Success
+        run: echo "🎉 Tous les tests sont passés !"
